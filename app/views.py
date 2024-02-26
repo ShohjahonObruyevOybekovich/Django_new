@@ -30,6 +30,7 @@ def login_view(request):
 def signup_view(request):
     form = SignupForm()
     if request.method == "POST":
+        print(request.POST)
         form = SignupForm(request.POST)
         if form.is_valid():
             form.save()
@@ -82,3 +83,4 @@ def edit_blog(request, slug):
         'blog': blog,
     }
     return render(request, 'edit_blog.html', context)
+

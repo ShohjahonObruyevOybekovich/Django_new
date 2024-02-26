@@ -4,6 +4,7 @@ from django.urls import reverse
 from django.views import View
 from django.views.generic import CreateView, ListView, UpdateView, DeleteView
 
+from account.models import CustomUser
 from app.forms import BlogForm
 from app.models import Blog
 
@@ -51,3 +52,5 @@ class CreateBlogView(CreateView):
         blog.author = self.request.user
         blog.save()
         return super().form_valid(form)
+
+

@@ -1,9 +1,8 @@
 from django.urls import path
 
-
-from .views import home, create_blog, login_view, logout_view, signup_view, detail_blog, edit_blog
-
+from .views import login_view, logout_view, signup_view, detail_blog, edit_blog
 from .views_cbv import CreateBlogView, HomePageView
+
 app_name = 'app'
 
 urlpatterns = [
@@ -14,6 +13,7 @@ urlpatterns = [
     path('signup/', signup_view, name='signup'),
     path('blog/<int:id>', detail_blog, name='detail'),
     path('blog/<slug:slug>', edit_blog, name='edit'),
+
 ]
 
 urlpatterns_cbv = [

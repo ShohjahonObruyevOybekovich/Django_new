@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block title %} 
+    {{ user.username }}'s Account Site
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1>Welcome, {{ user.username }}!</h1>
+    <p>Here's your account site information:</p>
+    <ul>
+        {% for blog in blogs %}
+            <li><a href="{% url 'account:account_site' blog.id %}">{{ blog.title }}</a></li>
+        {% endfor %}
+    </ul>
+</div>
+{% endblock %}
+

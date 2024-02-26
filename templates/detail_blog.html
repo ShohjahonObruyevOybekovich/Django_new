@@ -1,22 +1,36 @@
 {% extends 'base.html' %}
 
-
-{% block title %} {{ blog.title }} {% endblock %}
+{% block title %}{{ blog.title }}{% endblock %}
 
 {% block content %}
-    
-        <p>{{ blog.title }}</p>
-        <p>{{ blog.description }}</p>
-        {% if blog.image %}
-            <img src="{{ blog.image.url }}">
-        {% else %}
-    {% endif %}
-        <p>{{ blog.created_at }}</p>
-        <p>{{ blog.updated_at }}</p>
-        <p>{{ blog.author }}</p>
-        <p>{{ blog.category }}</p>
-<hr>
-    {% if request.user == blog.author %}
-    <p><a href="{% url 'app:edit' blog.slug %}">Edit</a></p>
-    {% endif %}
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-body">
+                    <h2 class="card-title">{{ blog.title }}</h2>
+                    <p class="card-text">{{ blog.description }}</p>
+                    
+                    {% if blog.image %}
+                        <img src="{{ blog.image.url }}" class="img-fluid mb-3" alt="{{ blog.title }}" style="max-width: 100%;">
+                    {% endif %}
+                    
+                    <div class="mb-3">
+                        <p><strong>Created:</strong> {{ blog.created_at }}</p>
+                        <p><strong>Last Updated:</strong> {{ blog.updated_at }}</p>
+                        <p><strong>Author:</strong> {{ blog.author }}</p>
+                        <p><strong>Category:</strong> {{ blog.category }}</p>
+                    </div>
+                    
+                    <hr>
+                    
+                    {% if request.user == blog.author %}
+                        <p><a href="{% url 'app:edit' blog.slug %}" class="btn btn-primary">Edit</a></p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock %}
+
